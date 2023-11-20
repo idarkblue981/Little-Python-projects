@@ -1,0 +1,38 @@
+def main():
+    while True:
+        a, b, c, d, e, f, g, h = inputs()
+        line1_row1, line1_row2, line2_row1, line2_row2 = multiplication(a, b, c, d, e, f, g, h)
+        display_result(line1_row1, line1_row2, line2_row1, line2_row2)
+
+def inputs():
+    while True:
+        try:
+            print('Enter the elements for the first matrix:')
+            a = float(input('Enter line 1, row 1: '))
+            b = float(input('Enter line 1, row 2: '))
+            c = float(input('Enter line 2, row 1: '))
+            d = float(input('Enter line 2, row 2: '))
+            
+            print('Enter the elements for the second matrix:')
+            e = float(input('Enter line 1, row 1: '))
+            f = float(input('Enter line 1, row 2: '))
+            g = float(input('Enter line 2, row 1: '))
+            h = float(input('Enter line 2, row 2: '))
+
+            return a, b, c, d, e, f, g, h
+        except ValueError:
+            pass
+
+def multiplication(a, b, c, d, e, f, g, h):
+    line1_row1 = a * e + b * g
+    line1_row2 = a * f + b * h
+    line2_row1 = c * e + d * g
+    line2_row2 = c * f + d * h
+
+    return line1_row1, line1_row2, line2_row1, line2_row2
+
+def display_result(line1_row1, line1_row2, line2_row1, line2_row2):
+    print(f'The result is: {line1_row1}, {line1_row2}, {line2_row1} and {line2_row2}')
+
+if __name__ == '__main__':
+    main()
