@@ -1,39 +1,25 @@
+from random import choice
+
 def main():
-    game()
-
-def game():
-    import random
-
-    list = ['Rock', 'Paper', 'Scissors']
+    options = ["rock", "paper", "scissors"]
 
     while True:
         try:
-            user = input('Choose between Rock, Paper and Scissors: ')
-            program = random.choice(list)
+            user = input("Choose between 'rock', 'paper' and 'scissors': ").strip().lower()
 
-            if user == 'Rock' and program == 'Rock':
-                print('Tie.')
-            elif user == 'Rock' and program == 'Paper':
-                print('I win.')
-            elif user == 'Rock' and program == 'Scissors':
-                print('You win.')
+            if user not in options:
+                raise ValueError
 
-            elif user == 'Paper' and program == 'Rock':
-                print('You win.')
-            elif user == 'Paper' and program == 'Paper':
-                print('Tie.')
-            elif user == 'Paper' and program == 'Scissors':
-                print('I win.')
+            program = choice(options)
 
-            elif user == 'Scissors' and program == 'Rock':
-                print('I win.')
-            elif user == 'Scissors' and program == 'Paper':
-                print('You win.')
-            elif user == 'Scissors' and program == 'Rock':
+            if user == program:
                 print('Tie.')
-            
+            if (user == "rock" and program == "paper") or (user == "paper" and program == "scissors") or (user == "scissors" and program == "rock"):
+                print("I win.")
+            if (user == "rock" and program == "scissors") or (user == "paper" and program == "rock") or (user == "scissors" and program == "paper"):
+                print("You win.")
         except ValueError:
-            pass
+            print("You can only choose between 'rock', 'paper' and 'scissors'!")
         
 if __name__ == '__main__':
     main()
