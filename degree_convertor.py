@@ -1,46 +1,35 @@
 def main():
-    temp()
-
-
-def temp():
     while True:
         try:
-            unit = input('Write which temperature measurement unit you want to use (between Celsius, Fahrenheit and Kelvin): ').strip().title()
-            temp = float(input('Write the temperature: '))
+            unit = input("Enter the temperature unit (Celsius, Fahrenheit, Kelvin) or 'exit' to quit: ").strip().title()
 
-    #Celsius
+            if unit.lower() == "exit":
+                break
 
-            C_F1 = 9/5 * temp
-            C_F = C_F1 + 32
+            if unit not in ["Celsius", "Fahrenheit", "Kelvin"]:
+                print("Invalid unit! Please choose between Celsius, Fahrenheit, or Kelvin.")
+                continue
 
-            C_K = temp + 273.15
+            temp = float(input("Enter the temperature: "))
 
-    #Fahrenheit
+            # Conversions
+            celsius_to_fahrenheit = 9/5 * temp + 32
+            celsius_to_kelvin = temp + 273.15
 
-            F_C1 = temp - 32
-            F_C = F_C1 * 5/9
+            fahrenheit_to_celsius = (temp - 32) * (5 / 9)
+            fahrenheit_to_kelvin = (temp - 32) * (5 / 9) + 273.15
 
-            F_K1 = temp - 32
-            F_K = F_K1 * 5/9 + 273.15
+            kelvin_to_celsius = temp - 273.15
+            kelvin_to_fahrenheit = 1.8 * (temp - 273.15) + 32
 
-    #Kelvin
-
-            K_C = temp - 273.15
-
-            K_F1 = temp - 273.15
-            K_F = 1.8 * K_F1 + 32
-
-            if unit == 'Celsius':
-                print(temp, 'degrees Celsius =', C_F ,'degrees Fahrenheit =', C_K ,'degrees Kelvin.')
+            if unit == "Celsius":
+                print(f"{temp} degrees Celsius = {celsius_to_fahrenheit:.2f} degrees Fahrenheit = {celsius_to_kelvin:.2f} degrees Kelvin.")
             elif unit == 'Fahrenheit':
-                print(temp, 'degrees Fahrenheit =', F_K ,'degrees Kelvin =', F_C ,'degrees Celsius.')
+                print(f"{temp} degrees Fahrenheit = {fahrenheit_to_celsius:.2f} degrees Celsius = {fahrenheit_to_kelvin:.2f} degrees Kelvin.")
             elif unit == 'Kelvin':
-                print(temp, 'degrees Kelvin =', K_C ,'degrees Celsius =', K_F ,'degrees Fahrenheit.')
-            else:
-                print('Write another temperature measurement unit, between Celsius, Fahrenheit and Kelvin.')
-                main()
+                print(f"{temp} degrees Kelvin = {kelvin_to_celsius:.2f} degrees Celsius = {kelvin_to_fahrenheit:.2f} degrees Fahrenheit.")
         except ValueError:
-            pass
+            print("Invalid temperature input! Please enter a numeric value for the temperature.")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
