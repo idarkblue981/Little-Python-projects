@@ -1,23 +1,27 @@
-def main():
-    guess_the_number()
+from random import randint
 
-def guess_the_number():
-    import random
+def main():
     min_num = 1
     max_num = 100
-    number = random.randint(min_num, max_num)
+    attempts = 1
+    number = randint(min_num, max_num)
+
     while True:    
         try:
             guess = int(input("Guess a number between {} and {}: ".format(min_num, max_num)))
+
             if guess == number:
-                print("You guessed the correct number!")
+                print(f"You guessed the correct number! Attempts: {attempts}.")
                 break
             elif guess < number:
                 print("Your guess is too low.")
             else:
                 print("Your guess is too high.")
+            
+            attempts += 1
+        
         except ValueError:
-            pass
+            print("Invalid input. Please enter a valid integer.")
 
 if __name__ == '__main__':
     main()
