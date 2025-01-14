@@ -1,27 +1,43 @@
 def main():
-    shopping_list()
+    try:
+        print("When the list is ready, write 'X' in the product section.")
+            
+        list_products = []
+        total = 0
+        biggest_price = -float('inf')
+        smallest_price = float('inf')
+        biggest_product = ""
+        smallest_product = ""
+            
+        while True:
+            product = input("Enter product: ").strip().lower()
+            if product == 'x':
+                break
+            list_products.append(product)
 
-def shopping_list():
-    while True:
-        try:
-            print('When the list is ready, write "X" in the product section.')
-            list_products = []
-            list_prices = []
-            for _ in range(1000):
-                product = input('Enter product: ')
-                if product == 'X' or product == 'x':
-                    break
-                list_products.append(product)
-                price = float(input('Enter price: '))
-                list_prices.append(price)
-            print("-----------------------------------------------------------------------------------------------------------------")
-            print(f'List of products: {list_products}')
-            print(f'Total sum to pay: {sum(list_prices)}')
-            print(f'Biggest price / product: {max(list_prices)}')
-            print(f'Smallest price / product: {min(list_prices)}')
-            print("-----------------------------------------------------------------------------------------------------------------")
-        except ValueError:
-            pass
+            price = float(input("Enter price: "))
+            if price < 0:
+                raise ValueError
+            total += price
+            if price > biggest_price:
+                biggest_price = price
+                biggest_product = product
+            if price < smallest_price:
+                smallest_price = price
+                smallest_product = product
 
-if __name__ == '__main__':
+        if list_products:
+            print("---- ---- ---- ---- ---- ---- ---- ----")
+            print(f"List of products: {list_products}")
+            print(f"Total sum to pay: {total}")
+            print(f"Biggest price / product: {biggest_price} / {biggest_product}")
+            print(f"Smallest price / product: {smallest_price} / {smallest_product}")
+            print("---- ---- ---- ---- ---- ---- ---- ----")
+        else:
+            print("No products entered.")
+
+    except ValueError:
+        print("Please enter a non-negative value here.")
+
+if __name__ == "__main__":
     main()
